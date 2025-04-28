@@ -1,117 +1,150 @@
-# **ZaaNet Litepaper**  
-**A Decentralized Internet Sharing Platform for Everyone**
+# ZaaNet Litepaper
+### A Decentralized Internet Sharing Platform for Everyone
 
-**Version:** 1.0  
+**Version:** 1.1  
 **Date:** April 2025
 
-## **1. Introduction**
+---
 
-Access to affordable and reliable internet remains a major challenge in many parts of Africa and other underserved regions of the world. Despite increasing connectivity, internet access remains expensive or unreliable for a large portion of the population. ZaaNet seeks to solve this by introducing a decentralized, peer-to-peer WiFi sharing platform powered by blockchain technology.
+## 1. Introduction
 
-Derived from the Dagbani word “Zaa,” meaning “everyone,” ZaaNet is built on the mission to democratize access to the internet. It empowers individuals with internet connections to earn income by securely sharing their WiFi with nearby users in exchange for stablecoin payments.
+Access to affordable and reliable internet remains a significant challenge across Africa and other underserved regions. Despite expanding mobile and broadband coverage, internet access remains either prohibitively expensive or unreliable for large portions of the population.
 
-## **2. Problem Statement**
+**ZaaNet** addresses this problem by introducing a decentralized, peer-to-peer WiFi sharing platform powered by **Arbitrum One** smart contracts. Derived from the Dagbani word "**Zaa**," meaning "**everyone**," ZaaNet’s mission is to democratize internet access — enabling anyone with a high-speed internet connection to monetize their network securely, and allowing users nearby to access affordable, time-limited connectivity.
 
-In many urban and semi-urban communities:
-- Internet access is costly or unreliable.
-- Many individuals and small businesses have excess data or broadband that goes unused.
-- There is no trusted, transparent way to share or sell internet access securely.
-- Traditional ISPs offer rigid pricing models with no peer-to-peer incentives.
+---
 
-## **3. Solution Overview**
+## 2. Problem Statement
 
-ZaaNet offers a decentralized platform where:
-- **WiFi Hosts** can list their available internet connections, set access prices, and earn from unused bandwidth.
-- **WiFi Guests** can browse nearby networks, pay using stablecoins, and receive the access credentials for a limited time.
+In many urban, peri-urban, and rural areas:
 
-The entire process is secured through blockchain technology and governed by smart contracts that enforce payment logic, session duration, and platform fees.
+- Internet access is costly compared to average incomes.
+- Many individuals and small businesses have surplus broadband capacity that goes unused.
+- There is no decentralized, trusted way to securely share or sell internet access.
+- Centralized ISPs dominate pricing models, offering little flexibility or peer-to-peer options.
+- Current WiFi sharing relies on static passwords without security enforcement, leading to misuse and revenue loss.
 
-## **4. Key Features**
+Without decentralized, affordable solutions, millions remain digitally excluded, limiting education, entrepreneurship, and economic growth potential.
 
-### a. Peer-to-Peer WiFi Marketplace
-WiFi owners register their networks, input details such as SSID, password, and pricing, and publish them on the platform. Users nearby can discover and pay for access.
+---
 
-### b. Crypto Payments with Stablecoins
-Payments are made using USDT (Tether) on Arbitrum or Optimism, reducing friction caused by volatile tokens or fiat onboarding. Once a payment is confirmed, the smart contract emits the access credentials.
+## 3. Solution Overview
 
-### c. Session-Based Access
-Each transaction grants access for a fixed session (e.g., 1 hour). The timer is tracked off-chain but verified via the backend once the session expires.
+ZaaNet provides a decentralized platform where:
 
-### d. Platform Revenue Model
-A small percentage (5-10%) is taken from each transaction as a platform fee. The rest is automatically transferred to the WiFi host’s wallet.
+- **Hosts** can securely share their WiFi through a low-cost local proxy device and earn income through direct, time-limited payments on Arbitrum.
+- **Guests** can discover available networks, pay small session fees using USDT, and access high-speed internet securely and fairly.
+- **Smart contracts** manage payments, access authorization, and enforce session-based disconnections automatically.
 
-### e. Transparent and Non-Custodial
-ZaaNet does not store user funds or credentials centrally. Smart contracts govern the flow of funds, and hosts maintain control over their WiFi passwords and pricing.
+By decentralizing internet access control and payment, ZaaNet transforms internet bandwidth into a peer-to-peer, blockchain-powered economy.
 
-## **5. Technical Architecture**
+---
+
+## 4. Key Features
+
+### a. Decentralized WiFi Access Marketplace
+Hosts register through the ZaaNet platform, configure a public SSID ("ZaaNetWiFi"), and connect a local proxy device that manages access control automatically.
+
+### b. Secure Crypto Payments
+Guests pay session fees (e.g., $0.50 USDT) via smart contracts deployed on Arbitrum One.  
+Hosts receive 90% of each payment instantly; ZaaNet retains 10% as a platform fee.
+
+### c. Automated Session Management
+Using device-specific authentication tokens and a local proxy server, Guests are automatically disconnected after their paid session expires — ensuring fair usage without manual Host intervention.
+
+### d. Minimal Hardware Requirements
+Hosts need only a standard WiFi router and a Raspberry Pi device (~$15) running the ZaaNet proxy app.
+
+### e. Transparent, Non-Custodial Design
+Funds flow directly from Guests to Hosts via smart contracts. ZaaNet does not custody user funds or control private credentials beyond session validation.
+
+---
+
+## 5. Technical Architecture
 
 ### a. Frontend
-- Built with **Next.js** and **Tailwind CSS**
-- Fully responsive and mobile-first
-- Wallet integration with **RainbowKit** and **Wagmi**
-- Guest and Host dashboards
-- Timer screen for active sessions
+- Built with **Next.js** and **Tailwind CSS**  
+- Mobile-first and responsive  
+- Wallet integration using **RainbowKit** and **wagmi hooks**  
+- Guest and Host dashboards for session management and earnings tracking
 
 ### b. Backend
-- Developed using **Node.js (Express)**
-- **MongoDB** for storing hosts, sessions, and metadata
-- REST APIs for managing hosts, fetching sessions, and confirming payments
+- Developed with **Node.js** and **Express.js**  
+- **MongoDB** database for minimal metadata (sessions, device fingerprints)  
+- Secure APIs to validate session tokens and monitor session expiration
 
-### c. Smart Contract
-- Written in **Solidity**, deployed on **Arbitrum One**
-- Accepts payments in ETH or USDT
-- Splits payment: 90–95% to host, rest to platform admin
-- Emits session events with timestamps and payment details
+### c. Smart Contracts
+- Written in **Solidity**, deployed on **Arbitrum One**  
+- Accept payments in **USDT**  
+- Handle session issuance, Host registration, and fee distribution transparently  
+- Emit on-chain events (GuestPaymentReceived, SessionTokenIssued) for monitoring
 
-### d. Wallet Support
-- Compatible with MetaMask, WalletConnect, Rainbow Wallet, and other EVM-compatible wallets
+### d. Local Proxy Server
+- Lightweight **Node.js proxy** running on Raspberry Pi devices  
+- Enforces session expiry by blocking Guest devices after their paid time ends  
+- Handles IP address management and access control locally without requiring central servers
 
-## **6. Target Users**
+---
+
+## 6. Target Users
 
 ### a. Hosts
-- Small internet cafés
-- Individuals with excess mobile data or broadband
-- Shops and kiosks with reliable internet
+- Households with Starlink, fiber, or reliable 4G/5G broadband
+- Small shops, cafés, and coworking spaces
+- Community centers and schools offering public internet
 
 ### b. Guests
-- Students, workers, and travelers in need of temporary, affordable internet
-- People in areas where data is unreliable or expensive
+- Students, entrepreneurs, remote workers needing short-term internet access
+- Visitors and travelers seeking affordable high-speed connectivity
+- Residents in areas where mobile data is expensive or unreliable
 
-## **7. Roadmap**
+---
+
+## 7. Roadmap
 
 | Phase | Timeline | Milestone |
-|-------|----------|-----------|
-| MVP Launch | Q2 2025 | Deploy on Arbitrum testnet with real WiFi host in Ghana |
-| Feedback Loop | Q3 2025 | Collect real-world usage data and refine UX |
-| Mainnet Rollout | Q4 2025 | Launch on Arbitrum mainnet and expand to other cities |
-| Mobile App | Q1 2026 | Release wrapped mobile app using React Native |
-| Decentralized Router Integration | Q2 2026 | Integrate with mesh WiFi hardware for auto access |
+|:---|:---|:---|
+| **MVP Launch** | Q2 2025 | Deploy smart contracts to Arbitrum One; launch proxy app and Guest onboarding dashboard; onboard first Hosts |
+| **Pilot Program** | Q2 2025 | 10 Hosts onboarded; 1,000 Guest sessions completed; Dune Analytics dashboard live |
+| **Scaling and Optimization** | Q3 2025 | Expand to 20+ Hosts; UX optimization; DNS filtering integration for security |
+| **Mobile App Launch** | Q1 2026 | Release mobile-friendly app (React Native) for Guest auto-authentication |
+| **Mesh Network Integration** | Q2 2026 | Integrate OpenWRT/mesh routers for direct session-based WiFi networks |
 
-## **8. Monetization and Sustainability**
+---
 
-ZaaNet’s core monetization strategy revolves around:
-- Platform fees from each transaction
-- Premium features in the future such as session analytics, bandwidth controls, and reputation scoring
-- Partnerships with hardware providers for router integration
+## 8. Monetization and Sustainability
 
-## **9. Limitations & Considerations**
+ZaaNet’s sustainability plan includes:
 
-- ZaaNet in its MVP does not control or enforce disconnection after session expiry; enforcement is manual.
-- Passwords are shared as plaintext after payment and rely on host honesty.
-- Real-time location scanning is not supported in MVP (networks are listed manually).
-- Future versions may include zero-knowledge proofs, encrypted access credentials, or mesh-router integration.
+- **Platform Fees:** 10% transaction fee on each WiFi session.
+- **Premium Host Subscriptions:** Paid plans ($5–$10/month) for advanced features (analytics, bandwidth management).
+- **Institutional Partnerships:** Business deployments in cafés, campuses, and public spaces.
+- **Scalable Expansion:** Controlled rollout across Ghana and neighboring countries, using reinvested platform earnings.
 
-## **10. Vision**
+---
 
-ZaaNet aims to be more than a utility app — it is a movement to unlock economic and digital opportunity. By turning internet access into a peer-to-peer economy, ZaaNet can help:
-- Increase financial inclusion for underserved individuals
-- Lower the barrier to internet access in rural and peri-urban areas
-- Encourage local innovation in last-mile connectivity
+## 9. Limitations and Considerations (MVP)
 
-## **11. Contact and Community**
+- **Initial Raspberry Pi Deployment:** Hosts must connect a small device to manage sessions.
+- **Offline Session Enforcement:** No blockchain interaction required after payment, but proxy devices must stay online to enforce expiration.
+- **User Education:** Some initial user onboarding effort is needed to explain blockchain payments for non-crypto Guests.
+- **Scaling Infrastructure:** Future scaling may require optional cloud proxy deployments for high-traffic Hosts.
 
-- Website: [Coming Soon]
-- GitHub: [Coming Soon]
-- Email: team@zaanet.org
-- Telegram: t.me/zaanet
-- Twitter: [Comming Soon]
+---
+
+## 10. Vision
+
+ZaaNet’s long-term vision is to create an open, decentralized, community-driven network of affordable internet access points across underserved regions.
+
+By turning internet access into a blockchain-based peer-to-peer service, ZaaNet aims to:
+
+- Expand financial and digital inclusion.
+- Lower barriers to education, remote work, and entrepreneurship.
+- Pioneer a practical real-world application of decentralized infrastructure (DePIN) on Arbitrum.
+
+---
+
+## 11. Contact and Community
+
+- **Website:** Coming Soon
+- **Twitter:** [Coming Soon]
