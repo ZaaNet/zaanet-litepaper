@@ -23,7 +23,7 @@ ZaaNet provides a decentralized platform where:
 - Hosts can securely share their WiFi through a local proxy device and earn income through direct, time-limited payments on Arbitrum.
 - Guests can discover available networks, pay small session fees using USDT, and access high-speed internet securely and fairly.
 - Smart contracts manage payments, access authorization, and enforce session-based disconnections automatically.
-- Account Abstraction (AA) is now integrated, providing seamless user experience for both crypto-native and non-crypto users via smart contract wallets.
+- Account Abstraction (AA) integrated, providing seamless user experience for both crypto-native and non-crypto users via smart contract wallets.
 
 By decentralizing internet access control and payment, ZaaNet transforms internet bandwidth into a peer-to-peer, blockchain-powered utility economy.
 
